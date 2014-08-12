@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
-<project name="GUI tests 8.5">
+<project name="StreamLine">
     <property name="project_name" value="${ant.project.name}" />
     <target name="create_dir">
         <tstamp>
             <format property="TODAY_UK" pattern="yyyy-MM-dd_HH-mm" locale="cn,CN"/>
         </tstamp>
-        <mkdir dir="D:/WebServers/home/192.168.0.54/www/autotest_reports_8.5/Report-${TODAY_UK}"/>
+        <mkdir dir="D:/WebServers/home/192.168.0.54/www/StreamLine_reports/Report-${TODAY_UK}"/>
     </target>
     <target name="copy_to_dir" depends="create_dir">
-        <copy todir="D:/WebServers/home/192.168.0.54/www/autotest_reports_8.5/Report-${TODAY_UK}">
+        <copy todir="D:/WebServers/home/192.168.0.54/www/StreamLine_reports/Report-${TODAY_UK}">
             <fileset dir="target/surefire-reports/html/">
                 <include name="*"/>
                 <include name="**"/>
@@ -48,15 +48,15 @@
         <echo message="${element}"/>
         <substring text="${element}" start="22" end="60" property="subtext" />
         <echo message="subtext = ${subtext}" />
-        <mail mailhost="mail.t1.tenet" mailport="25" subject="Finished testing project ${subtext}.">
+        <mail mailhost="mail." mailport="25" subject="Finished testing project ${subtext}.">
             <from address="auto.tests@worldapp.com"/>
             <replyto address="halyavkaivan@gmail.com"/>
-            <to address="ivan.halyavka@worldapp.com"/>
-            <cc address="alexander.skridlevskiy@worldapp.com"/>
-            <cc address="viktor.svetly@worldapp.com"/>
-            <cc address="victoriya.tkachenko@worldapp.com"/>
-            <cc address="pavel.shlendyk@worldapp.com"/>
-            <message>Finished test of ${project_name} project. Results you can see on address:  http://192.168.0.54/autotest_reports_8.5/Report-${TODAY_UK}</message>
+            <to address=""/>
+            <cc address=""/>
+            <cc address=""/>
+            <cc address=""/>
+            <cc address=""/>
+            <message>Finished test of ${project_name} project. Results you can see on address:  http://192.168.0.54/StreamLine_reports/Report-${TODAY_UK}</message>
         </mail>
     </target>
     <target name="delete_dir">

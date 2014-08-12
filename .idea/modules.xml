@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/StreamLine/Streamline.iml" filepath="$PROJECT_DIR$/StreamLine/Streamline.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Testing_all_in_one.iml" filepath="$PROJECT_DIR$/Testing_all_in_one.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Utils/Utils.iml" filepath="$PROJECT_DIR$/Utils/Utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_tests/android_tests.iml" filepath="$PROJECT_DIR$/android_tests/android_tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jbehave_UI_tests/jbehave_UI_tests.iml" filepath="$PROJECT_DIR$/jbehave_UI_tests/jbehave_UI_tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Magento/magento.iml" filepath="$PROJECT_DIR$/Magento/magento.iml" />
+    </modules>
+  </component>
+</project>
+

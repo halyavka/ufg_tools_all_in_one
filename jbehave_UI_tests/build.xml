@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<project name="Jbehave tests-stories">
+    <property name="project_name" value="${ant.project.name}" />
+    <target name="create_dir">
+        <tstamp>
+            <format property="TODAY_UK" pattern="yyyy-MM-dd_HH-mm" locale="cn,CN"/>
+        </tstamp>
+        <mkdir dir="D:/WebServers/home/192.168.0.54/www/autotest_reports_Jbehave/Report-${TODAY_UK}"/>
+    </target>
+
+    <target name="dir.check">
+        <condition property="dir.exists">
+            <available file="target/target/jbehave" type="dir"/>
+        </condition>
+    </target>
+
+    <target name="copy_screenshots" depends="dir.check" if="dir.exists">
+        <echo>directory with failing screenshots exists`</echo>
+        <copy todir="target/jbehave">
+            <fileset dir="target/target/jbehave">
+                <include name="*"/>
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="copy_to_dir" depends="create_dir">
+        <copy todir="D:/WebServers/home/192.168.0.54/www/autotest_reports_Jbehave/Report-${TODAY_UK}">
+            <fileset dir="target/jbehave/">
+                <include name="*"/>
+                <include name="**"/>
+                <include name="***"/>
+				<include name="****"/>
+            </fileset>
+        </copy>
+    </target>
+    <scriptdef name="findelement" language="javascript">
+        <attribute name="tag" />
+        <attribute name="file" />
+        <attribute name="property" />
+        <![CDATA[
+       var tag = attributes.get("tag");
+       var file = attributes.get("file");
+       var regex = "<span[^>]*>(.*)?</span>(.*)";
+       var patt = new RegExp(regex,"ig");
+       project.setProperty(attributes.get("property"), patt.exec(file));
+     ]]>
+    </scriptdef>
+    <scriptdef name="substring" language="javascript">
+        <attribute name="text" />
+        <attribute name="start" />
+        <attribute name="end" />
+        <attribute name="property" />
+        <![CDATA[
+       var text = attributes.get("text");
+       var start = attributes.get("start");
+       var end = attributes.get("end") || text.length();
+       project.setProperty(attributes.get("property"), text.substring(start, end));
+     ]]>
+    </scriptdef>
+    <target name="send_email_gui" depends="copy_to_dir">
+        <echo>Mail Sent Start</echo>      
+        <loadfile srcFile="resources\SelfInfo.html" property="html.file"/>
+        <findelement tag="span" file="${html.file}" property="element"/>
+        <echo message="${element}"/>
+        <substring text="${element}" start="22" end="60" property="subtext" />
+        <echo message="subtext = ${subtext}" />
+        <mail mailhost="mail.t1.tenet" mailport="25" subject="Finished tests ${project_name} on project test-build ${subtext}.">
+            <from address="auto.tests.Jbehave@worldapp.com"/>
+            <replyto address="ivan.halyavka@worldapp.com"/>
+            <to address="ivan.halyavka@worldapp.com"/>
+			<!--<cc address="viktor.svetly@worldapp.com"/>
+            <cc address="aleksey.melnychenko@worldapp.com"/>
+            <cc address="nataly.daradur@worldapp.com"/>
+            <cc address="victoriya.tkachenko@worldapp.com"/>-->
+            <message>Finished test of ${project_name} project. Results you can see on address:  http://192.168.0.54/autotest_reports_Jbehave/Report-${TODAY_UK}/view/reports.html</message>
+        </mail>
+    </target>
+
+</project>

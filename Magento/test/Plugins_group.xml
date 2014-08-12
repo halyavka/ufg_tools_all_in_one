@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite  name="WorldApp_Plugins_tests" parallel="tests" thread-count="9" >
+    <listeners>
+        <listener class-name="pageObjPattern.TestsAnalyser"/>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+    <!--<test verbose="3" name="Comment Box Plugin" preserve-order="true" >
+        <classes>
+            <class name="plugins.visualAndInteractive.CommentBoxTestCase"/>
+        </classes>
+    </test>
+    <test verbose="3" name="Page Selector Plugin" preserve-order="true" >
+        <classes>
+            <class name="plugins.visualAndInteractive.PageSelectorPluginTestCase"/>
+        </classes>
+    </test>-->
+</suite>

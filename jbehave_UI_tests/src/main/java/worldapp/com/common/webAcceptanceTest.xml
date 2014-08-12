@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="provider" class="org.jbehave.web.selenium.FirefoxWebDriverProvider"/>
+  
+    <!--<bean id="lifeCycle" class="worldapp.com.myConfig.MyPerStoryWebDriverSteps">
+        <constructor-arg ref="provider" />
+    </bean>-->
+    <bean id="webDriverProvider" class="org.jbehave.web.selenium.PerStoryWebDriverSteps">
+        <constructor-arg ref="provider" />
+    </bean>
+
+   <!-- <bean id="mainPage" class="worldapp.com.common.MainPage"><constructor-arg ref="provider"/></bean>-->
+    <bean id="basicSteps" class="worldapp.com.steps.BasicSteps"><constructor-arg ref="provider"/></bean>
+    <bean id="surveySteps" class="worldapp.com.steps.SurveySteps"><constructor-arg ref="pageFactory"/></bean>
+    <bean id="votingSteps" class="worldapp.com.steps.VotingSteps"><constructor-arg ref="pageFactory"/></bean>
+    <bean id="pageFactory" class="worldapp.com.pages.PageFactory">
+        <constructor-arg ref="provider"/>
+    </bean>
+
+
+    <bean id="screenshot" class="worldapp.com.myConfig.DriverScreenshotOnFailure">
+        <constructor-arg ref="provider"/>
+    </bean>
+
+</beans>
+
+

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite  name="WorldApp_acceptance_tests" parallel="tests" thread-count="8" >
+    <listeners>
+        <listener class-name="pageObjPattern.TestsAnalyser"/>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+ <!-- <test verbose="3" name="group_EXPORT" preserve-order="true" >
+        <classes>
+            <class name="exports.ExportsExcelCsvSpssTestCase"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_FTP_Upload_Shedule"  preserve-order="true" parallel="classes" thread-count="3">
+    <packages>
+        <package name="exports.ftpUploadShedule"/>
+    </packages>
+    </test>
+    <test verbose="3" name="group_LOGIN" preserve-order="true" >
+        <classes>
+            <class name="login.LoginTestCase" />
+        </classes>
+    </test>
+    <test verbose="3" name="ConvertToPDF" preserve-order="true"  >
+        <classes>
+            <class name="convertToPDF.ParsePDFFileAllowMultipleResponsesTestCase"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_REPORT" preserve-order="true"  >
+        <classes>
+            <class name="report.ReportTestCase"/>
+            <class name="report.ParserPDFFileReportTestCase"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_SURVEY" preserve-order="true" >
+        <classes>
+            <class name="survey.CopySurveyTestCase"/>
+            <class name="survey.SurveyTestCase"/>
+            <class name="survey.PrintSurveysTestCase"/>
+            <class name="survey.LookupTestCase"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_QUESTIONS" preserve-order="true" >
+        <packages>
+            <package name="survey.questions"/>
+        </packages>
+    </test>
+
+    <test enabled="false" verbose="3" name="group_PREVIEW_SURVEY" preserve-order="false">
+        <classes>
+            <class name="survey.preview.PreviewFirstTestCase"/>
+            <class name="survey.preview.PreviewSecondTestCase"/>
+        </classes>
+    </test>
+
+    <test verbose="3" name="group_CONTACTS" preserve-order="true" >
+        <classes>
+            <class name="contacts.ContactsTestCase"/>
+            <class name="contacts.ContactsTestCaseOnFrenchLocale"/>
+            <class name="contacts.ImportContacts"/>
+            <class name="contacts.ExportContacts"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_XML_EXPORT" preserve-order="true" >
+        <classes>
+            <class name="exports.ExportXML"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_OFFLINE" preserve-order="true" >
+        <classes>
+            <class name="offline.Sync.SyncTestCase"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_FTP_Export_Report" preserve-order="true" >
+        <classes>
+            <class name="exports.FTPUpload"/>
+            <class name="exports.SFTPUpload"/>
+            <class name="exports.FTPSUpload"/>
+            <class name="exports.FTPUploadWithFailedConnection"/>
+        </classes>
+    </test>-->
+</suite>

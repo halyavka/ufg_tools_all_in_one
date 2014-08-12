@@ -1,0 +1,265 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ufg.tools</groupId>
+    <artifactId>Streamline</artifactId>
+    <name>StreamLine UI testing</name>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>ufg.tools</groupId>
+        <artifactId>Testing_all_in_one</artifactId>
+        <version>1.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>ufg.tools</groupId>
+            <artifactId>Utils</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.49</version>
+        </dependency>
+
+        <!--  <dependency>
+              <groupId>com.google.code.gson</groupId>
+              <artifactId>gson</artifactId>
+              <version>1.4</version>
+          </dependency>-->
+
+        <dependency>
+            <groupId>net.sourceforge.jexcelapi</groupId>
+            <artifactId>jxl</artifactId>
+            <version>2.6.12</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.javacsv</groupId>
+            <artifactId>javacsv</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium</artifactId>
+            <version>2.0rc2</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>2.11.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.uncommons</groupId>
+            <artifactId>reportng</artifactId>
+            <version>1.1.4</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.testng</groupId>
+                    <artifactId>testng</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>spssr</groupId>
+            <artifactId>spssr</artifactId>
+            <version>1.04</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>no_tests</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <skip.tests>true</skip.tests>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <skip.tests>false</skip.tests>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <meminitial>128m</meminitial>
+                    <maxmem>1024m</maxmem>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+                <version>${maven.compiler.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <!-- here the phase you need -->
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>../target</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>target</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+           <!-- <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    &lt;!&ndash;<descriptorRefs>
+                        <descriptorRef>bin</descriptorRef>
+                    </descriptorRefs>&ndash;&gt;
+                    <archive>
+                        <manifest>
+                            <mainClass>WorldAPP.com.autotests</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>.</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+-->
+
+         <!--   <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.plugin.version}</version>
+                <configuration>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                    <delimiters>
+                        <delimiter>@</delimiter>&lt;!&ndash; for Ant-like tokens style &ndash;&gt;
+                    </delimiters>
+                </configuration>
+            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                    <runOrder>filesystem</runOrder>
+                    <!--<childDelegation>false</childDelegation>
+                    <reportsDirectory>D:\AutoTestsProjects\v85\autotests\target\surefire\</reportsDirectory>
+                    <testClassesDirectory>D:\AutoTestsProjects\v85\autotests\target\test-classes</testClassesDirectory>-->
+                   <!-- <reuseForks>false</reuseForks>
+                    <forkCount>2</forkCount>-->
+                    <threadCount>2</threadCount>
+                    <parallel>suites</parallel>
+                    <skipTests>${skip.tests}</skipTests>
+                    <!--<perCoreThreadCount>true</perCoreThreadCount>-->
+                    <!--<threadCountSuites>2</threadCountSuites>-->
+                    <!--<argLine>-Xms512m -Xmx1024m -Djava -cp ${project.basedir}\libs\testng-6.8.jar org.testng.TestNG -suitethreadpoolsize 2 acceptance_testng.xml acceptance2_testng.xml</argLine>-->
+
+                    <!--<argLine>-Djava -cp C:\Users\aleksey.melnychenko\.m2\repository\org\testng\testng\6.8.8\testng-6.8.8.jar org.testng.TestNG -suitethreadpoolsize 2 ${project.basedir}\test\acceptance_testng.xml ${project.basedir}\test\acceptance2_testng.xml -Xms512m -Xmx1024m</argLine>-->
+                    <!--<argLine>-Djava org.testng.TestNG -suitethreadpoolsize 2 ${project.basedir}\test\acceptance_testng.xml ${project.basedir}\test\acceptance2_testng.xml -Xms512m -Xmx1024m</argLine>-->
+                    <argLine>-Xms512m -Xmx1024m</argLine>
+
+                    <suiteXmlFiles>
+                       <!-- <file>${project.basedir}/src/pageObjPattern/tests/TestSuitesConfigurator.java</file>-->
+                        <suiteXmlFile>test\acceptance_testng.xml</suiteXmlFile>
+                        <suiteXmlFile>test\acceptance2_testng.xml</suiteXmlFile>
+                        <suiteXmlFile>test\Plugins_group.xml</suiteXmlFile>
+                       <!-- <suiteXmlFile>test\allSuites.xml</suiteXmlFile>-->
+                    </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <org.uncommons.reportng.escape-output>false</org.uncommons.reportng.escape-output>
+                    </systemPropertyVariables>
+                    <properties>
+                        <!-- <property>
+                             <name>suiteThreadPoolSize</name>
+                             <value>2</value>
+                         </property>-->
+                        <property>
+                            <name>usedefaultlisteners</name>
+                            <value>false</value>
+                        </property>
+                        <property>
+                            <name>listener</name>
+                            <value>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter</value>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <directory>target</directory>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
+
+        <testResources>
+            <testResource>
+                <directory>resources/test</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </testResource>
+            <testResource>
+                <directory>test</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.csv</include>
+                    <!--<include>**/*.dtd</include>-->
+                    <!--<include>**/*.xml</include>-->
+                    <!--<include>**/*.sql</include>-->
+                    <!--<include>**/*.sql.*</include>-->
+                </includes>
+            </testResource>
+        </testResources>
+        <resources>
+            <resource>
+                <directory>src</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <!--<include>**/*.dtd</include>-->
+                    <!--<include>**/*.xml</include>-->
+                    <!--<include>**/*.sql</include>-->
+                    <!--<include>**/*.sql.*</include>-->
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+</project>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="WorldApp_acceptance_tests_part2" parallel="tests" thread-count="8">
+    <listeners>
+        <listener class-name="pageObjPattern.TestsAnalyser"/>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+    <!--<test verbose="3" name="group_api67" preserve-order="true">
+        <packages>
+            <package name="api.api81.api67"/>
+        </packages>
+    </test>
+    <test verbose="3" name="group_api_SUP_for_services" preserve-order="true">
+        <packages>
+            <package name="api.api81.SUP_for_services.reportManagementService"/>
+        </packages>
+    </test>
+    <test verbose="3" name="group_api81" preserve-order="true">
+        <packages>
+            <package name="api.api81"/>
+        </packages>
+    </test>
+    <test enabled="false" verbose="3" name="group_EMAIL_ALERT" preserve-order="true">
+        <classes>
+            <class name="emailAlert.EmailAlertTestCase"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_OTHER"  preserve-order="true" parallel="classes" thread-count="2" >
+        &lt;!&ndash;<classes>
+            <class name="WorldAppAnalytics.LoginToWorldAppAnalyticsTestCase"/>
+            <class name="servlet.Read_PDF_From_urlTestCase"/>
+        </classes>&ndash;&gt;
+      <packages>
+          <package name="WorldAppAnalytics"/>
+          <package name="servlet"/>
+      </packages>
+    </test>
+    <test verbose="3" name="group_MEDIA_LIBRARY" preserve-order="true">
+        <classes>
+            <class name="pages.myAccount.mediaLibrary.MediaLibDialogTestCase"/>
+            <class name="pages.myAccount.mediaLibrary.MediaLibTestCase"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_VOTING_AUTOFILL" preserve-order="true">
+        <classes>
+            <class name="votingAutoFill.VotingOverrideAutofillTestCase"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_VOTING"  preserve-order="true" parallel="classes" thread-count="3">
+        <packages>
+            <package name="voting"/>
+            <package name="voting.logic"/>
+        </packages>
+    </test>
+    <test verbose="3" name="group_DATAMODELS" preserve-order="true">
+        <classes>
+            <class name="datamodels.DataModelsSurveyTestCase"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_JSAPI" preserve-order="true">
+        <classes>
+            <class name="js.api.JsApiTestsOnline"/>
+        </classes>
+    </test>
+    <test verbose="3" name="group_VIP"  preserve-order="true" >
+          <classes>
+              <class name="vip.cocacola.CocaColaHoverBrowser"/>
+              <class name="vip.cocacola.CocaColaREDOfflineBrowserKsBeta"/>
+              &lt;!&ndash;class name="vip.cocacola.CocaColaREDOfflineBrowserKeySurvey"/&ndash;&gt;
+          </classes>
+      </test>
+    <test verbose="3" name="group_MULTILINGUAL" preserve-order="true">
+        <classes>
+            <class name="survey.multilingual.MultiLingualTestCase"/>
+        </classes>
+    </test>
+    <test enabled="false" verbose="3" name="group_Registration" preserve-order="true">
+        <classes>
+            <class name="registration.RegistrationTestCase"/>
+        </classes>
+    </test>-->
+</suite>
